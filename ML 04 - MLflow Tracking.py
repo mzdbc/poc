@@ -230,7 +230,8 @@ client = MlflowClient()
 
 # COMMAND ----------
 
-client.list_experiments()
+#client.list_experiments()
+client.search_experiments()
 
 # COMMAND ----------
 
@@ -243,6 +244,7 @@ client.list_experiments()
 # COMMAND ----------
 
 experiment_id = run.info.experiment_id
+
 runs_df = mlflow.search_runs(experiment_id)
 
 display(runs_df)

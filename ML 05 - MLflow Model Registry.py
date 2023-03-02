@@ -102,6 +102,30 @@ with mlflow.start_run(run_name="LR Model") as run:
 
 # COMMAND ----------
 
+# STEP 1: RUN THIS CELL TO INSTALL BAMBOOLIB
+
+# You can also install bamboolib on the cluster. Just talk to your cluster admin for that
+# %pip install bamboolib  
+
+# Heads up: this will restart your python kernel, so you may need to re-execute some of your other code cells.
+
+# COMMAND ----------
+
+# STEP 2: RUN THIS CELL TO IMPORT AND USE BAMBOOLIB
+
+# import bamboolib as bam
+
+# This opens a UI from which you can import your data
+# bam  
+
+# Already have a pandas data frame? Just display it!
+# Here's an example
+# import pandas as pd
+# df_test = pd.DataFrame(dict(a=[1,2]))
+# df_test  # <- You will see a green button above the data set if you display it
+
+# COMMAND ----------
+
 # MAGIC %md <i18n value="1322cac5-9638-4cc9-b050-3545958f3936"/>
 # MAGIC 
 # MAGIC 
@@ -112,8 +136,8 @@ with mlflow.start_run(run_name="LR Model") as run:
 
 # COMMAND ----------
 
-model_name = f"{DA.cleaned_username}_sklearn_lr"
-model_name
+#model_name = f"{DA.cleaned_username}_sklearn_lr"
+model_name ="ihwan_sklearn_lr"
 
 # COMMAND ----------
 
@@ -329,6 +353,18 @@ time.sleep(10)
 
 client.transition_model_version_stage(
     name=model_details.name,
+    version=2,
+    stage="Staging"
+)
+
+# COMMAND ----------
+
+import time
+
+time.sleep(10)
+
+client.transition_model_version_stage(
+    name='feature_store_airbnb_jungminkim_mz_co_kr',
     version=2,
     stage="Staging"
 )
